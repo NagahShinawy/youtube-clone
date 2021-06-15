@@ -91,6 +91,22 @@ def main():
     techtim.delete_video(numpy)
     print(techtim.videos)
 
+    # ############ ############ test likes, comments, subscribe ############ ############ ############ ###########
+    tim.comment(flask_form, "this is clear concepts of flask form")
+    tim.comment(flask_form, "hope to upload more videos of flask")
+    print(flask_form)
+    tim.like(flask_form)
+    tim.subscribe(techtim)
+    print(flask_form)
+    print(techtim.subscribers)
+    print(techtim.subscribes)
+    print(techtim.likes)
+    print("#" * TIMES)
+    # ############ ############ test unlikes, subscribe,  delete comments, ######### ############ ############
+
+
+# 058121630
+
 
 if __name__ == "__main__":
     main()

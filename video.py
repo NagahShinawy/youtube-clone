@@ -8,7 +8,9 @@ class Video:
         self.title = title
         self.description = description
         self.tags = []
+        self.reacts = []
+        self.comments = []
         self.belongs_to_playlist = None
 
     def __repr__(self):
-        return self.title
+        return f"Video(title={self.title}, likes={len(self.reacts)}, comments={len(self.comments)})"

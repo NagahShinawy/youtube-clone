@@ -15,7 +15,7 @@ class User:
         self.email = email
 
     def __repr__(self):
-        return f"<{self.username}><{self.email}>"
+        return f" <{self.username}:{self.email}> "
 
     def subscribe(self, channel: Channel):
         """
@@ -23,7 +23,19 @@ class User:
         :param channel:
         :return:
         """
-        pass
+        if self not in channel.subscribers:
+            channel.subscribers.append(self)
+            channel.subscribes += 1
+
+    def unsubscribe(self, channel: Channel):
+        """
+        user can subscribe a channel
+        :param channel:
+        :return:
+        """
+        if self in channel.subscribers:
+            channel.subscribers.remove(self)
+            channel.subscribes -= 1
 
     def like(self, video: Video):
         """
@@ -31,14 +43,29 @@ class User:
         :param video:
         :return:
         """
-        pass
+        if self not in video.reacts:
+            video.reacts.append(self)
 
-    def comment(self, video: Video):
+    def unlike(self, video: Video):
         """
-        user can add comments on a video
+        user can unlike a video
         :param video:
         :return:
         """
+        if self in video.reacts:
+            video.reacts.append(self)
+
+    @staticmethod
+    def comment(video: Video, comment_):
+        """
+         user can add comments on a video
+        :param video: video to comment on
+        :param comment_: user comment
+        :return:
+        """
+        video.comments.append(comment_)
+
+    def delete_comment(self):
         pass
 
 

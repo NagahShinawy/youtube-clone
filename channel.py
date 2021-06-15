@@ -16,6 +16,7 @@ class Channel:
         self.videos = []
         self.likes = 0
         self.subscribes = 0
+        self.subscribers = []
         self.is_verified = False
 
     def __repr__(self):
@@ -33,20 +34,6 @@ class Channel:
         :return:
         """
         self.is_verified = True
-
-    def increment_likes(self):
-        """
-        when user like on a a video, likes should be increment
-        :return:
-        """
-        self.likes += 1
-
-    def increment_subscribes(self):
-        """
-           when user subscribe a channel , subscribe should be increment
-           :return:
-        """
-        self.subscribes += 1
 
     def upload(self, video: Video):
         """
