@@ -4,7 +4,6 @@ created by Nagaj at 15/06/2021
 
 
 class Playlist:
-
     def __init__(self, title):
         self.title = title
         self.videos = []
@@ -21,3 +20,7 @@ class Playlist:
     def add_video(self, video):
         if video not in self.videos:
             self.videos.append(video)
+
+    def delete_video(self, video):
+        if video in self.videos:
+            self.videos.remove(video)

@@ -6,6 +6,9 @@ from video import Video
 
 
 class Channel:
+    """
+    class to handle channel related task and operations
+    """
     def __init__(self, name, owner):
         self.name = name
         self.owner = owner
@@ -54,7 +57,12 @@ class Channel:
         if video not in self.videos:
             self.videos.append(video)
 
-    def create_playlist(self, playlist: Playlist):
+    def add_playlist(self, playlist: Playlist):
+        """
+        add new playlist to channel
+        :param playlist:
+        :return:
+        """
         if playlist not in self.playlists:
             self.playlists.append(playlist)
 
@@ -68,12 +76,19 @@ class Channel:
         self.upload(video)
         if playlist in self.playlists:
             playlist.add_video(video)
-            video.playlist_related = playlist
+            video.belongs_to_playlist = playlist
 
     def delete_video(self, video: Video):
+        """
+        delete video from channel and
+        :param video:
+        :return:
+        """
         if video in self.videos:
             self.videos.remove(video)
-            video.playlist_related.videos.remove(video)
+            # video.belongs_to.videos.remove(video)
+            if video.belongs_to_playlist is not None:
+                video.belongs_to_playlist.delete_video(video)
 
     def delete_playlist(self, playlist: Playlist):
         if playlist in self.playlists:

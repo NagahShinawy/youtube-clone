@@ -30,13 +30,15 @@ def main():
     python_4_everyone = Playlist("Python For Everyone")
     django_crash_course = Playlist("Django WEb Framework")
     flask_tutorials = Playlist("Flask Micro")
-    techtim.create_playlist(python_4_everyone)
-    techtim.create_playlist(flask_tutorials)
-    techtim.create_playlist(django_crash_course)
+    techtim.add_playlist(python_4_everyone)
+    techtim.add_playlist(flask_tutorials)
+    techtim.add_playlist(django_crash_course)
     print(techtim.playlists)
     print("#" * 100)
 
     # ############ ############ test upload videos ############ ############ ############ ###########
+    numpy = Video("Numpy for math operations")
+    techtim.upload(numpy)
     django_into = Video("Django Into. What is Django")
     django_models = Video("Models in Django. What is ORM?")
     whats_pandas = Video("What is Pandas Library?")
@@ -86,6 +88,8 @@ def main():
     print(techtim.playlists)
     techtim.delete_playlist(flask_tutorials)
     print(techtim.playlists)
+    techtim.delete_video(numpy)
+    print(techtim.videos)
 
 
 if __name__ == "__main__":
