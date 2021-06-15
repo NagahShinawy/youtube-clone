@@ -4,4 +4,12 @@ created by Nagaj at 15/06/2021
 
 
 class Video:
-    pass
+
+    def __init__(self, title, description=""):
+        self.title = title
+        self.description = description
+        self.tags = []
+        self.playlist_related = None
+
+    def __repr__(self):
+        return self.title

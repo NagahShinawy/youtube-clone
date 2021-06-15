@@ -1,8 +1,8 @@
 """
 created by Nagaj at 15/06/2021
 """
-from video import Video
 from playlist import Playlist
+from video import Video
 
 
 class Channel:
@@ -17,6 +17,12 @@ class Channel:
 
     def __repr__(self):
         return f"{self.name}\n{self.subscribes} Subscribes"
+
+    def __getitem__(self, item):
+        return self.playlists[item]
+
+    def __contains__(self, item):
+        return item in self.playlists
 
     def verify(self):
         """
@@ -45,7 +51,12 @@ class Channel:
         :param video:
         :return:
         """
-        pass
+        if video not in self.videos:
+            self.videos.append(video)
+
+    def create_playlist(self, playlist: Playlist):
+        if playlist not in self.playlists:
+            self.playlists.append(playlist)
 
     def save_to_playlist(self, video: Video, playlist: Playlist):
         """
@@ -54,8 +65,16 @@ class Channel:
         :param playlist: playlist obj that saves the video
         :return:
         """
-    def remove_video(self, video: Video):
-        pass
+        self.upload(video)
+        if playlist in self.playlists:
+            playlist.add_video(video)
+            video.playlist_related = playlist
 
-    def remove_playlist(self, playlist: Playlist):
-        pass
+    def delete_video(self, video: Video):
+        if video in self.videos:
+            self.videos.remove(video)
+            video.playlist_related.videos.remove(video)
+
+    def delete_playlist(self, playlist: Playlist):
+        if playlist in self.playlists:
+            self.playlists.remove(playlist)
