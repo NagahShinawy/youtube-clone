@@ -13,4 +13,4 @@ class Video:
         self.belongs_to_playlist = None
 
     def __repr__(self):
-        return f"Video(title={self.title}, likes={len(self.reacts)}, comments={len(self.comments)})"
+        return f"Video(title={self.title}, reacts={len(self.reacts)}, comments={len(self.comments)})"

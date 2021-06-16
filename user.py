@@ -13,6 +13,7 @@ class User:
     def __init__(self, username, email):
         self.username = username
         self.email = email
+        self.history = []
 
     def __repr__(self):
         return f" <{self.username}:{self.email}> "
@@ -26,6 +27,7 @@ class User:
         if self not in channel.subscribers:
             channel.subscribers.append(self)
             channel.subscribes += 1
+            self.history.append({"activity": "subscribe"})
 
     def unsubscribe(self, channel: Channel):
         """
@@ -36,8 +38,9 @@ class User:
         if self in channel.subscribers:
             channel.subscribers.remove(self)
             channel.subscribes -= 1
+            self.history.append({"activity": "unsubscribe"})
 
-    def like(self, video: Video):
+    def ilike(self, video: Video):
         """
         user can like a video
         :param video:
@@ -45,25 +48,27 @@ class User:
         """
         if self not in video.reacts:
             video.reacts.append(self)
+            self.history.append({"activity": "like"})
 
-    def unlike(self, video: Video):
+    def iunlike(self, video: Video):
         """
         user can unlike a video
         :param video:
         :return:
         """
         if self in video.reacts:
-            video.reacts.append(self)
+            video.reacts.remove(self)
+            self.history.append({"activity": "unlike"})
 
-    @staticmethod
-    def comment(video: Video, comment_):
+    def comment(self, video: Video, acomment):
         """
          user can add comments on a video
         :param video: video to comment on
-        :param comment_: user comment
+        :param acomment: user comment
         :return:
         """
-        video.comments.append(comment_)
+        self.history.append({"activity": {"comment": acomment}})
+        video.comments.append(acomment)
 
     def delete_comment(self):
         pass

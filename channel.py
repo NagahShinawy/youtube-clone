@@ -9,6 +9,7 @@ class Channel:
     """
     class to handle channel related task and operations
     """
+
     def __init__(self, name, owner):
         self.name = name
         self.owner = owner
@@ -20,7 +21,7 @@ class Channel:
         self.is_verified = False
 
     def __repr__(self):
-        return f"{self.name}\n{self.subscribes} Subscribes"
+        return f"Channel(name={self.name}), subscribes={self.subscribes})"
 
     def __getitem__(self, item):
         return self.playlists[item]
@@ -73,7 +74,6 @@ class Channel:
         """
         if video in self.videos:
             self.videos.remove(video)
-            # video.belongs_to.videos.remove(video)
             if video.belongs_to_playlist is not None:
                 video.belongs_to_playlist.delete_video(video)
 

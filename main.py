@@ -3,7 +3,7 @@ created by Nagaj at 15/06/2021
 """
 from channel import Channel
 from playlist import Playlist
-from user import Youtuber
+from user import Youtuber, User
 from video import Video
 
 TIMES = 100
@@ -15,8 +15,10 @@ def main():
     entry point for the app
     :return:
     """
+    john = User("John", "jo@test.com")
     tim = Youtuber("Tim", "tim@gmail.com")
     techtim = Channel("Tech With Tim", tim)
+    dogs = Channel("Me and Dog", tim)
 
     # ############ ############  test create channel ############ ############ ############ ###########
     tim.create_channel(techtim)
@@ -95,7 +97,7 @@ def main():
     tim.comment(flask_form, "this is clear concepts of flask form")
     tim.comment(flask_form, "hope to upload more videos of flask")
     print(flask_form)
-    tim.like(flask_form)
+    tim.ilike(flask_form)
     tim.subscribe(techtim)
     print(flask_form)
     print(techtim.subscribers)
@@ -103,10 +105,28 @@ def main():
     print(techtim.likes)
     print("#" * TIMES)
     # ############ ############ test unlikes, subscribe,  delete comments, ######### ############ ############
+    tim.ilike(numpy)
+    tim.ilike(numpy)
+    tim.ilike(numpy)
+    tim.ilike(numpy)
+    tim.ilike(numpy)
+    print(numpy)
+    tim.iunlike(numpy)
+    print(numpy)
+    #######
+    john.subscribe(dogs)
+    tim.subscribe(dogs)
+    print(dogs)
 
-
-# 058121630
+    # ############ ############ test history, ######### ############ ############
+    print(tim.history)
 
 
 if __name__ == "__main__":
     main()
+
+
+# todo: 1- can creator subscribe him self?
+# todo: 2- genreic module for toggle like, unlike, subscribe, unsubscribe
+# todo: 3- history
+# todo: 3- comment class
