@@ -13,10 +13,13 @@ class User:
     def __init__(self, username, email):
         self.username = username
         self.email = email
-        self.history = []
+        self.activity_logs = []
 
     def __repr__(self):
         return f" <{self.username}:{self.email}> "
+
+    def save_to_activities(self, activity):
+        self.activity_logs.append(activity)
 
     def subscribe(self, channel: Channel):
         """
@@ -27,7 +30,7 @@ class User:
         if self not in channel.subscribers:
             channel.subscribers.append(self)
             channel.subscribes += 1
-            self.history.append({"activity": "subscribe"})
+            self.activity_logs.append({"activity": "subscribe"})
 
     def unsubscribe(self, channel: Channel):
         """
@@ -38,7 +41,7 @@ class User:
         if self in channel.subscribers:
             channel.subscribers.remove(self)
             channel.subscribes -= 1
-            self.history.append({"activity": "unsubscribe"})
+            self.save_to_activities({"activity": "unsubscribe"})
 
     def ilike(self, video: Video):
         """
@@ -48,7 +51,7 @@ class User:
         """
         if self not in video.reacts:
             video.reacts.append(self)
-            self.history.append({"activity": "like"})
+            self.save_to_activities({"activity": "like"})
 
     def iunlike(self, video: Video):
         """
@@ -58,7 +61,7 @@ class User:
         """
         if self in video.reacts:
             video.reacts.remove(self)
-            self.history.append({"activity": "unlike"})
+            self.save_to_activities({"activity": "unlike"})
 
     def comment(self, video: Video, acomment):
         """
@@ -67,11 +70,12 @@ class User:
         :param acomment: user comment
         :return:
         """
-        self.history.append({"activity": {"comment": acomment}})
+        self.save_to_activities({"activity": {"comment": acomment}})
         video.comments.append(acomment)
 
     def delete_comment(self):
         pass
+        # self.save_to_activities({"activity": {"delete-comment": acomment}})
 
 
 class Youtuber(User):

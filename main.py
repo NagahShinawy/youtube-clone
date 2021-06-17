@@ -74,8 +74,11 @@ def main():
     print(django_models in flask_tutorials)
     print(django_models in django_crash_course)
 
-    print("#" * 100)
-    # ############ ############ test magic methods in channel class ############ ############ ############ ###########
+    print("#" * 50, "Magic Methods", "#" * 50)
+    # ############ ############ test magic methods in channel class ############ ############
+    print(techtim.playlists)
+    print(techtim[:-1])
+    print(techtim[::-1])
     for playlist in techtim:
         print(playlist)
     print("|" * 50)
@@ -119,7 +122,7 @@ def main():
     print(dogs)
 
     # ############ ############ test history, ######### ############ ############
-    print(tim.history)
+    print(tim.activity_logs)
 
 
 if __name__ == "__main__":
@@ -130,3 +133,4 @@ if __name__ == "__main__":
 # todo: 2- genreic module for toggle like, unlike, subscribe, unsubscribe
 # todo: 3- history
 # todo: 3- comment class
+# todo: 3- implement delete comment
