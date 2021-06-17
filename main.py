@@ -138,5 +138,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# todo: 2- genreic module for toggle like, unlike, subscribe, unsubscribe
