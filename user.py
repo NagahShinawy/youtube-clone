@@ -31,7 +31,7 @@ class User:
         :param channel:
         :return:
         """
-        if self not in channel.subscribers:
+        if self not in channel.subscribers and not isinstance(self, Youtuber):
             channel.subscribers.append(self)
             channel.subscribes += 1
             self.activity_logs.append({"activity": "subscribe"})
@@ -76,12 +76,9 @@ class User:
         :return:
         """
         comment_ = Comment(text)
+        comment_.save()
         self.save_to_activities({"activity": {"comment": comment_}})
         video.comments.append(comment_)
-
-    def delete_comment(self):
-        pass
-        # self.save_to_activities({"activity": {"delete-comment": acomment}})
 
 
 class Youtuber(User):

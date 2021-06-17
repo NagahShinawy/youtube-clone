@@ -19,6 +19,7 @@ def main():
     tim = Youtuber("Tim", "tim@gmail.com")
     techtim = Channel("Tech With Tim", tim)
     dogs = Channel("Me and Dog", tim)
+    ios = Channel("IOS and Swift", tim)
 
     # ############ ############  test create channel ############ ############ ############ ###########
     tim.create_channel(techtim)
@@ -126,11 +127,16 @@ def main():
     # ############ ############ test history, ######### ############ ############
     print(tim.activity_logs)
 
+    # ###########  ##########  Can creator subscribe him self? ##########
+    print("#" * 60)
+    print(ios.subscribes)
+    tim.subscribe(ios)
+    print(ios.subscribers, ios.subscribes)
+    john.subscribe(ios)
+    print(ios.subscribes, ios.subscribers)
+
 
 if __name__ == "__main__":
     main()
 
-
-# todo: 1- can creator subscribe him self?
 # todo: 2- genreic module for toggle like, unlike, subscribe, unsubscribe
-# todo: 3- implement delete comment

@@ -22,7 +22,7 @@ class Love(React):
 
 
 class Angry(React):
-    EMOTION = "Angry"
+    EMOTION = "ANGRY"
 
 
 class Sad(React):
