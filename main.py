@@ -97,9 +97,9 @@ def main():
     print(techtim.videos)
 
     # ############ ############ test likes, comments, subscribe ############ ############ ############ ###########
-    tim.comment(flask_form, "this is clear concepts of flask form")
-    tim.comment(flask_form, "hope to upload more videos of flask")
-    print(flask_form)
+    tim.icomment(flask_form, "this is clear concepts of flask form")
+    tim.icomment(flask_form, "hope to upload more videos of flask")
+    print(flask_form, "testNagah")
     tim.ilike(flask_form)
     tim.subscribe(techtim)
     print(flask_form)
@@ -107,6 +107,8 @@ def main():
     print(techtim.subscribes)
     print(techtim.likes)
     print("#" * TIMES)
+    print(tim.icomment(flask_form, "nice video about flask form"))
+    print(tim.activity_logs)
     # ############ ############ test unlikes, subscribe,  delete comments, ######### ############ ############
     tim.ilike(numpy)
     tim.ilike(numpy)
@@ -131,6 +133,4 @@ if __name__ == "__main__":
 
 # todo: 1- can creator subscribe him self?
 # todo: 2- genreic module for toggle like, unlike, subscribe, unsubscribe
-# todo: 3- history
-# todo: 3- comment class
 # todo: 3- implement delete comment

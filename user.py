@@ -1,8 +1,12 @@
 """
 created by Nagaj at 15/06/2021
 """
+import random
+
 from channel import Channel
+from comment import Comment
 from video import Video
+from react import Like, Love, Angry, Sad, CARE
 
 
 class User:
@@ -51,7 +55,8 @@ class User:
         """
         if self not in video.reacts:
             video.reacts.append(self)
-            self.save_to_activities({"activity": "like"})
+            react = random.choice([Like, Love, Angry, Sad, CARE])
+            self.save_to_activities({"activity": react.show_react()})
 
     def iunlike(self, video: Video):
         """
@@ -63,15 +68,16 @@ class User:
             video.reacts.remove(self)
             self.save_to_activities({"activity": "unlike"})
 
-    def comment(self, video: Video, acomment):
+    def icomment(self, video: Video, text):
         """
          user can add comments on a video
         :param video: video to comment on
-        :param acomment: user comment
+        :param text: user comment
         :return:
         """
-        self.save_to_activities({"activity": {"comment": acomment}})
-        video.comments.append(acomment)
+        comment_ = Comment(text)
+        self.save_to_activities({"activity": {"comment": comment_}})
+        video.comments.append(comment_)
 
     def delete_comment(self):
         pass
